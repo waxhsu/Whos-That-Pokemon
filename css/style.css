@@ -13,7 +13,22 @@
 img{
   display: block;
   margin: 0 auto;
+  max-width: 100%;
 }
+
+#pokemonHidden{
+  display: block;
+  margin: 0 auto;
+  max-width: 85%;
+  filter: brightness(100%);
+}
+
+#pokemonReveal{
+  display: block;
+  margin: 0 auto;
+  max-width: 85%;
+}
+
 
 
 /******************************************
