@@ -1,64 +1,47 @@
 //Example fetch using pokemonapi.co
-document.querySelector('button').addEventListener('click', getFetch)
 window.onload = (event) => {
-  const choice = document.querySelector('input').value
-  const url = 'https://pokeapi.co/api/v2/pokemon/'+choice
+  const dexNumber = Math.floor(Math.random()*151)
+  const url = 'https://pokeapi.co/api/v2/pokemon/'+dexNumber
 
   fetch(url)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
         console.log(data)
+        document.querySelector('#thePokemon').src = data.sprites.other['official-artwork'].front_default
 
 
-        console.log(Math.floor(Math.random()*data.length))
-
-        document.querySelector('#pokemonHidden').src = data.sprites.other['official-artwork'].front_default
-
-
-      })
-      .catch(err => {
-          console.log(`error ${err}`)
-      });
-
-}
+        document.querySelector('button').addEventListener('click', guessPokemon)
 
 
 
 
-function getFetch(){
-  const choice = document.querySelector('input').value
-  const url = 'https://pokeapi.co/api/v2/pokemon/'+choice
-
-  fetch(url)
-      .then(res => res.json()) // parse response as JSON
-      .then(data => {
-        console.log(data)
+        function guessPokemon(){
+          const guess = document.querySelector('input').value.toLowerCase()
+          let capName = data.name.charAt(0).toUpperCase() + data.name.slice(1)
 
 
-        document.querySelector('h2').innerText = data.name.charAt(0).toUpperCase() + data.name.slice(1)
-        document.querySelector('#typeOne').innerText = data.types[0].type.name
 
-        
-        if (data.types[1] == null){
-          document.querySelector('#typeTwo').innerText = ''
-        } else {
-          document.querySelector('#typeTwo').innerText = data.types[1].type.name
+          if (guess == data.name){
+            document.querySelector('h1').innerText = `That's right! It's.. ${capName}!`
+          } else {
+            document.querySelector('h1').innerText = `Nope! It's actually.. ${capName}!`
+
+
+          }
+
+          //toggle filter brightness back
+          document.querySelector('#thePokemon').classList.toggle('hidden')
+          //removeEventListener to prevent user from toggling 
+          document.querySelector('button').removeEventListener('click', guessPokemon)
         }
-        
-        document.querySelector('#pokemonHidden').src = data.sprites.other['official-artwork'].front_default
+
+
+
 
 
       })
       .catch(err => {
           console.log(`error ${err}`)
       });
+
 }
-
-
-
-// given information
-// types
-// generation
-// there's 1008 entries THUS far
-
-
