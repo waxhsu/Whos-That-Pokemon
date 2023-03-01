@@ -53,9 +53,11 @@ img{
   filter: brightness(0%);
 }
 
-.tryAgain{
+.reload{
   display: none;
 }
+
+
 
 h2, h1{
   font-size: 400%;
