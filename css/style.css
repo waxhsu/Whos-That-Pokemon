@@ -53,6 +53,10 @@ img{
   filter: brightness(0%);
 }
 
+.tryAgain{
+  display: none;
+}
+
 h2, h1{
   font-size: 400%;
   letter-spacing: 3px;
