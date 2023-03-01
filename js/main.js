@@ -33,8 +33,11 @@ window.onload = (event) => {
 
 
           //boolean logic if name is correct
+          //added else if to callout laziness
           if (guess == data.name){
             document.querySelector('h1').innerText = `That's right! It's.. ${capName}!`
+          } else if (guess == ''){ 
+            document.querySelector('h1').innerText = `Lol you didn't even try to guess. Anyway, it's ${capName}.`
           } else {
             document.querySelector('h1').innerText = `Nope! It's actually.. ${capName}!`
           }
